@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  "nfs-server":
+    image: erichough/nfs-server
+    privileged: true
+#    cap_add:
+#      - SYS_ADMIN
+#      - SYS_MODULE
+    ports:
+#      - "2049:2049"
+    environment:
+      NFS_EXPORT_0: "/export *(rw,sync,all_squash,no_subtree_check,fsid=0)"
+    volumes:
+      - ./export:/export
+      - /lib/modules:/lib/modules:ro
